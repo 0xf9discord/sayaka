@@ -1,2 +1,15 @@
-# sayaka
-사야카팸 디코봇임 ㅇㅇ
+# discord-bot
+
+To install dependencies:
+
+```bash
+bun install
+```
+
+To run:
+
+```bash
+bun run index.ts
+```
+
+This project was created using `bun init` in bun v1.4.0. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
