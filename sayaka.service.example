@@ -1,0 +1,15 @@
+[Unit]
+Description=Sayaka Discord Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=areumdaune1
+WorkingDirectory=/home/areumdaune1/sayaka
+ExecStart=/home/areumdaune1/.bun/bin/bun /home/areumdaune1/sayaka/index.ts
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

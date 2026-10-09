@@ -1,8 +1,4 @@
-
-import {
-  SlashCommandBuilder,
-  type ChatInputCommandInteraction,
-} from "discord.js";
+import { SlashCommandBuilder, type ChatInputCommandInteraction } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -10,22 +6,14 @@ export default {
     .setDescription("봇의 핑을 확인합니다."),
 
   async execute(interaction: ChatInputCommandInteraction) {
-    const start = Date.now();
-
+    const started = Date.now();
     await interaction.reply("핑 측정 중입니다.");
-
-    const message = await interaction.fetchReply();
-
-    const latency = message.createdTimestamp - interaction.createdTimestamp;
-    const apiPing = Date.now() - start;
-    const wsPing = interaction.client.ws.ping;
-
-    await interaction.editReply({
-      content:
-        `**퐁!**\n` +
-        `웹소켓 핑: **${wsPing}ms**\n` +
-        `응답 지연: **${latency}ms**\n` +
-        `API 처리 시간: **${apiPing}ms**`,
-    });
+    const reply = await interaction.fetchReply();
+    const responseLatency = reply.createdTimestamp - interaction.createdTimestamp;
+    const apiTime = Date.now() - started;
+    const websocketLatency = interaction.client.ws.ping;
+    await interaction.editReply(
+      `**퐁!**\n웹소켓 핑: **${websocketLatency}ms**\n응답 지연: **${responseLatency}ms**\nAPI 처리 시간: **${apiTime}ms**`
+    );
   },
 };
